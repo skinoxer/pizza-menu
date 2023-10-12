@@ -1,7 +1,7 @@
-import React from "react";
-import ReactDom from "react-dom/client";
-import "./index.css";
-import "./app.css";
+const {reza: 2} = { valid: `reza` };
+console.log(ali);
+console.log(ahmad);
+console.log(valid);
 
 const pizzaData = [
   {
@@ -86,18 +86,11 @@ function Menu() {
         <h2>our menu</h2>
 
         {nunPizaa > 0 ? (
-          <>
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime
-              cumque minima sunt minus maiores! Eos, amet. Minus doloribus odio
-              tenetur.
-            </p>
-            <ul className="pizzas">
-              {pizzaData.map((pizza) => (
-                <Pizza key={pizza.name} nameObj={pizza} />
-              ))}
-            </ul>
-          </>
+          <ul className="pizzas">
+            {pizzaData.map((pizza) => (
+              <Pizza key={pizza.name} nameObj={pizza} />
+            ))}
+          </ul>
         ) : (
           <p>we are courrntly not online please come back later</p>
         )}
@@ -106,17 +99,17 @@ function Menu() {
   );
 }
 
-function Pizza({ nameObj }) {
-  // if (nameObj.soldOut) return null;
-   
+function Pizza(props) {
+  if (props.nameObj.soldOut) return null;
+  console.log(props.nameObj.soldOut);
   return (
     <>
-      <li className={`pizza ${nameObj.soldOut ? "sold-out" : ""}`}>
-        <img src={nameObj.photoName} alt={nameObj.name} />
+      <li className="pizza">
+        <img src={props.nameObj.photoName} alt={props.nameObj.name} />
         <div>
-          <h3>{nameObj.name}</h3>
-          <p>{nameObj.ingredients}</p>
-          <span>{nameObj.soldOut ? `SOLD OUT` : nameObj.price}</span>
+          <h3>{props.nameObj.name}</h3>
+          <p>{props.nameObj.ingredients}</p>
+          <span>{props.nameObj.price}</span>
         </div>
       </li>
     </>
@@ -137,27 +130,20 @@ function Footer() {
   return (
     <>
       <footer className="footer">
-        {isOpen ? (
-          <Order closeHoure={closeHoure}></Order>
-        ) : (
-          <h2>right now we cant take order come back we open at 13 </h2>
+        {isOpen && (
+          <div className="order">
+            <p>we are open until {closeHoure}:00</p>
+            <p>{new Date().toLocaleTimeString()} we corrntly open</p>
+            <button className="btn" type="submit">
+              oreder
+            </button>
+          </div>
         )}
       </footer>
     </>
   );
 }
 
-function Order({ closeHoure }) {
-  return (
-    <div className="order">
-      <p>we are open until {closeHoure}:00</p>
-      <p>{new Date().toLocaleTimeString()} we corrntly open</p>
-      <button className="btn" type="submit">
-        oreder
-      </button>
-    </div>
-  );
-}
 // caderddddd
 
 // function Hole() {
@@ -219,10 +205,3 @@ function Order({ closeHoure }) {
 //     </div>
 //   );
 // }
-
-const root = ReactDom.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
-    <App></App>
-  </React.StrictMode>
-);
