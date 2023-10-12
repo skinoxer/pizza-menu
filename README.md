@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 
-![Alt Text](./public/pizzas/a1.png)
+![Alt Text](./public/pizzas/s.png)
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
